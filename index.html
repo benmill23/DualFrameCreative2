@@ -39,303 +39,144 @@
         --green: #00ff88;
       }
 
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; color-scheme: dark; }
 
       body {
         margin: 0;
-        background: radial-gradient(
-            circle at 15% 10%,
-            rgba(139, 92, 246, 0.18),
-            transparent 55%
-          ),
-          radial-gradient(
-            circle at 80% 80%,
-            rgba(0, 255, 136, 0.1),
-            transparent 55%
-          ),
-          linear-gradient(180deg, var(--bg), var(--bg2));
+        background: radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.18), transparent 55%),
+                    radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.1), transparent 55%),
+                    linear-gradient(180deg, var(--bg), var(--bg2));
         color: var(--text);
-        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
-          Helvetica, Arial;
+        font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
         line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
       }
 
-      .wrap {
-        position: relative;
-        overflow: hidden;
-        min-height: 100svh;
-      }
-
+      .wrap { position: relative; overflow: hidden; min-height: 100svh; }
+      
       .grid {
-        position: absolute;
-        inset: 0;
-        background-image: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.06) 1px,
-            transparent 1px
-          ),
-          linear-gradient(
-            to bottom,
-            rgba(255, 255, 255, 0.05) 1px,
-            transparent 1px
-          );
+        position: absolute; inset: 0;
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
         background-size: 56px 56px;
         mask-image: radial-gradient(circle at 30% 15%, black 0%, transparent 60%);
-        opacity: 0.55;
-        pointer-events: none;
+        opacity: 0.55; pointer-events: none;
       }
 
       .noise::before {
-        content: "";
-        pointer-events: none;
-        position: absolute;
-        inset: 0;
+        content: ""; pointer-events: none; position: absolute; inset: 0;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
-        mix-blend-mode: overlay;
-        opacity: 0.35;
+        mix-blend-mode: overlay; opacity: 0.35;
       }
 
-      .container {
-        max-width: 1120px;
-        margin: 0 auto;
-        padding: 32px 20px;
-        position: relative;
-      }
+      .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; position: relative; }
 
       .nav {
-        position: sticky;
-        top: 0;
-        z-index: 30;
+        position: sticky; top: 0; z-index: 50;
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         background: rgba(9, 9, 11, 0.45);
-        backdrop-filter: blur(18px);
+        backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
       }
 
-      .nav-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        padding: 14px 20px;
-      }
+      .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; }
 
       .brand {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        text-decoration: none;
-        color: var(--text);
-        font-weight: 700;
-        letter-spacing: -0.02em;
+        display: flex; align-items: center; gap: 12px;
+        text-decoration: none; color: var(--text);
+        font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px;
       }
 
       .brand-dot {
-        width: 36px;
-        height: 36px;
-        border-radius: 14px;
+        width: 36px; height: 36px; border-radius: 12px;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.04);
-        position: relative;
-        overflow: hidden;
+        background: rgba(255, 255, 255, 0.04); position: relative; overflow: hidden;
       }
 
       .brand-dot::after {
-        content: "";
-        position: absolute;
-        inset: -40%;
-        background: radial-gradient(
-            circle at 30% 20%,
-            rgba(139, 92, 246, 0.45),
-            transparent 50%
-          ),
-          radial-gradient(
-            circle at 65% 80%,
-            rgba(0, 255, 136, 0.3),
-            transparent 50%
-          );
+        content: ""; position: absolute; inset: -40%;
+        background: radial-gradient(circle at 30% 20%, rgba(139, 92, 246, 0.45), transparent 50%),
+                    radial-gradient(circle at 65% 80%, rgba(0, 255, 136, 0.3), transparent 50%);
         filter: blur(18px);
       }
 
-      .links {
-        display: none;
-        gap: 22px;
-      }
-
-      @media (min-width: 860px) {
-        .links {
-          display: flex;
-        }
-      }
-
-      .links a {
-        color: rgba(250, 250, 250, 0.65);
-        text-decoration: none;
-        font-size: 13px;
-        font-weight: 600;
-      }
-
-      .links a:hover {
-        color: rgba(250, 250, 250, 0.95);
-      }
+      .links { display: none; gap: 32px; }
+      @media (min-width: 860px) { .links { display: flex; } }
+      .links a { color: rgba(250, 250, 250, 0.65); text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.2s; }
+      .links a:hover { color: #fff; }
 
       .btn {
-        border-radius: 14px;
-        border: 1px solid var(--border);
-        background: linear-gradient(180deg, var(--glass), var(--glass2));
-        color: var(--text);
-        padding: 10px 14px;
-        text-decoration: none;
-        font-size: 13px;
-        font-weight: 700;
+        display: inline-flex; align-items: center; gap: 8px;
+        border-radius: 12px; border: 1px solid rgba(255,255,255,0.08);
+        background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+        color: #fff; padding: 10px 20px; text-decoration: none;
+        font-size: 13px; font-weight: 600; transition: transform 0.2s, box-shadow 0.2s;
+        backdrop-filter: blur(8px);
       }
+      .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
 
-      .hero {
-        padding: 56px 0 26px;
-        display: grid;
-        gap: 26px;
-        grid-template-columns: 1fr;
-      }
+      section { padding: 80px 0; }
 
-      @media (min-width: 920px) {
-        .hero {
-          grid-template-columns: 1.1fr 0.9fr;
-          align-items: center;
-        }
-      }
+      .hero { display: grid; gap: 48px; grid-template-columns: 1fr; padding-top: 60px; }
+      @media (min-width: 920px) { .hero { grid-template-columns: 1.1fr 0.9fr; align-items: center; } }
 
       .badge {
-        display: inline-flex;
-        gap: 10px;
-        align-items: center;
-        padding: 8px 12px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.04);
-        color: rgba(250, 250, 250, 0.72);
-        font-size: 12px;
-        font-weight: 600;
-        width: fit-content;
+        display: inline-flex; gap: 10px; align-items: center; padding: 6px 14px;
+        border-radius: 999px; border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04); color: rgba(250, 250, 250, 0.7);
+        font-size: 11px; font-weight: 500; margin-bottom: 24px;
       }
+      .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--green); box-shadow: 0 0 12px var(--green); }
 
-      .dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 999px;
-        background: var(--green);
-        box-shadow: 0 0 18px rgba(0, 255, 136, 0.65);
-      }
+      h1 { font-family: 'Syne', sans-serif; font-size: clamp(42px, 7vw, 66px); line-height: 1; letter-spacing: -0.04em; margin: 0 0 24px; }
+      .grad { background: linear-gradient(135deg, var(--purple), var(--green)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      
+      .sub { color: var(--muted); font-size: 16px; line-height: 1.6; max-width: 500px; margin-bottom: 32px; }
 
-      h1 {
-        font-size: clamp(42px, 6vw, 72px);
-        line-height: 0.98;
-        letter-spacing: -0.05em;
-        margin: 18px 0 12px;
-      }
+      .cta-group { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 40px; }
+      .outline { background: rgba(255,255,255,0.02); border-color: rgba(255,255,255,0.1); }
 
-      .grad {
-        background: linear-gradient(135deg, var(--purple), var(--green));
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      .sub {
-        color: var(--muted);
-        max-width: 52ch;
-        margin: 0;
-      }
-
-      .cta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-top: 18px;
-      }
-
-      .cta a {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .outline {
-        background: rgba(255, 255, 255, 0.02);
-      }
+      .hero-points { display: grid; gap: 12px; }
+      .point { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--muted); }
+      .check { width: 20px; height: 20px; border-radius: 6px; background: rgba(0,255,136,0.1); color: var(--green); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; }
 
       .card {
-        position: relative;
-        border-radius: 22px;
-        border: 1px solid rgba(255, 255, 255, 0.09);
+        position: relative; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08);
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
-        box-shadow: 0 18px 70px rgba(0, 0, 0, 0.45);
-        overflow: hidden;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5); overflow: hidden; padding: 20px;
       }
+      .logo-box { width: 100%; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); background: rgba(0, 0, 0, 0.3); overflow: hidden; }
+      .logo-box img { width: 100%; height: auto; display: block; }
 
-      .card .inner {
-        padding: 18px;
-      }
+      .card-stats { margin-top: 20px; display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); }
+      .stat-pill { border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.03); padding: 16px; text-align: center; }
+      .stat-pill .v { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; color: #fff; }
+      .stat-pill .l { font-size: 11px; color: rgba(250, 250, 250, 0.5); line-height: 1.3; margin-top: 4px; }
 
-      .logo {
-        width: 100%;
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(0, 0, 0, 0.25);
-        overflow: hidden;
-      }
+      .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; color: rgba(255,255,255,0.4); text-transform: uppercase; display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+      .section-label::before { content: ""; width: 24px; height: 1px; background: var(--purple); }
+      h2 { font-family: 'Syne', sans-serif; font-size: clamp(32px, 5vw, 48px); letter-spacing: -0.03em; margin: 0 0 40px; }
 
-      .logo img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
+      .grid-box { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+      .item { padding: 32px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); transition: transform 0.3s; }
+      .item:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); }
+      .item h3 { font-family: 'Syne', sans-serif; margin: 0 0 12px; font-size: 20px; }
+      .item p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
 
-      .stats {
-        margin-top: 14px;
-        display: grid;
-        gap: 10px;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .stat {
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.09);
-        background: rgba(255, 255, 255, 0.03);
-        padding: 12px;
-      }
-
-      .stat .v {
-        font-weight: 800;
-        letter-spacing: -0.02em;
-      }
-
-      .stat .l {
-        font-size: 12px;
-        color: rgba(250, 250, 250, 0.55);
-      }
-
-      .hint {
-        margin-top: 40px;
-        border-top: 1px solid rgba(255, 255, 255, 0.06);
-        padding-top: 16px;
-        color: rgba(250, 250, 250, 0.45);
-        font-size: 12px;
-      }
+      .footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 40px 0; margin-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; color: rgba(255,255,255,0.4); font-size: 12px; }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   </head>
   <body>
     <div class="wrap noise">
       <div class="grid"></div>
 
-      <div class="nav">
-        <div class="nav-inner container">
-          <a class="brand" href="#top">
-            <span class="brand-dot"></span>
+      <nav class="nav">
+        <div class="container nav-inner">
+          <a class="brand" href="#">
+            <div class="brand-dot"></div>
             DualFrameCreative
           </a>
           <div class="links">
@@ -346,62 +187,91 @@
           </div>
           <a class="btn" href="#contact">Book a call</a>
         </div>
-      </div>
+      </nav>
 
-      <main id="top" class="container">
+      <main class="container">
         <section class="hero">
           <div>
-            <div class="badge"><span class="dot"></span> Human-crafted. AI-powered. Short-form that performs.</div>
-            <h1>
-              Premium ads, built like
-              <span class="grad"> liquid glass</span>.
-            </h1>
-            <p class="sub">
-              DualFrameCreative designs modern advertising systems: hooks, edits,
-              motion, and messaging—so your brand looks expensive and converts.
-            </p>
-            <div class="cta">
-              <a class="btn" href="#contact">Get a quote →</a>
+            <div class="badge"><div class="dot"></div> Human-crafted. AI-powered. Short-form that performs.</div>
+            <h1>Premium ads, built like <span class="grad">liquid glass</span>.</h1>
+            <p class="sub">DualFrameCreative designs modern advertising systems: hooks, edits, motion, and messaging—so your brand looks expensive and converts.</p>
+            <div class="cta-group">
+              <a class="btn" href="#contact">Get a quote</a>
               <a class="btn outline" href="#work">See recent work</a>
             </div>
-            <div class="hint">This is a single-file, dark-mode landing page (no build tools). Drop it into a GitHub repo and deploy on Vercel.</div>
+            <div class="hero-points">
+              <div class="point"><div class="check">✓</div> Strategy + creative direction</div>
+              <div class="point"><div class="check">✓</div> Short-form ads + UGC</div>
+              <div class="point"><div class="check">✓</div> Performance-first iterations</div>
+            </div>
           </div>
 
           <div class="card">
-            <div class="inner">
-              <div class="logo">
-                <img src="/dualframecreative-logo.PNG" alt="DualFrameCreative logo" />
-              </div>
-              <div class="stats">
-                <div class="stat"><div class="v">7–14 days</div><div class="l">Launch-ready creative sprints</div></div>
-                <div class="stat"><div class="v">3×</div><div class="l">Hooks tested per concept</div></div>
-                <div class="stat"><div class="v">Weekly</div><div class="l">Performance-led iterations</div></div>
-              </div>
+            <div class="logo-box">
+              <img src="dualframecreative-logo.png" alt="DualFrameCreative logo" />
+            </div>
+            <div class="card-stats">
+              <div class="stat-pill"><div class="v">7–14 days</div><div class="l">Launch-ready creative sprints</div></div>
+              <div class="stat-pill"><div class="v">3×</div><div class="l">Hooks tested per concept</div></div>
+              <div class="stat-pill"><div class="v">Weekly</div><div class="l">Performance iterations</div></div>
             </div>
           </div>
         </section>
 
-        <section id="services" style="padding: 26px 0;">
-          <h2 style="margin: 0 0 10px; font-size: 28px; letter-spacing: -0.03em;">Services</h2>
-          <p style="color: rgba(250, 250, 250, 0.6); margin: 0 0 14px;">A tight toolkit for modern advertising: strategy, creative, and speed.</p>
+        <section id="services">
+          <div class="section-label">Services</div>
+          <h2>Built for brands that want <span class="grad">attention</span>.</h2>
+          <div class="grid-box">
+            <div class="item">
+              <h3>Short-form ads & UGC</h3>
+              <p>Hook-first scripts, native edits, captions, and motion—built for TikTok, Reels, Shorts.</p>
+            </div>
+            <div class="item">
+              <h3>Brand visuals & design</h3>
+              <p>Visual direction, graphic systems, thumbnails, and templates that look premium.</p>
+            </div>
+            <div class="item">
+              <h3>Performance testing</h3>
+              <p>Rapid iterations, creative variants, and learnings that compound for scale.</p>
+            </div>
+            <div class="item">
+              <h3>Campaign systems</h3>
+              <p>Messaging, offers, and creative frameworks that keep your output consistent and sexy.</p>
+            </div>
+          </div>
         </section>
 
-        <section id="work" style="padding: 26px 0;">
-          <h2 style="margin: 0 0 10px; font-size: 28px; letter-spacing: -0.03em;">Work</h2>
-          <p style="color: rgba(250, 250, 250, 0.6); margin: 0 0 14px;">Swap placeholders with real client work later.</p>
+        <section id="work">
+          <div class="section-label">Work</div>
+          <h2>Concepts that look expensive.</h2>
+          <div class="grid-box">
+            <div class="item" style="min-height: 200px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.01);">
+              <span style="opacity: 0.3; font-size: 11px; letter-spacing: 0.1em;">PREVIEW SYSTEM</span>
+            </div>
+            <div class="item" style="min-height: 200px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.01);">
+              <span style="opacity: 0.3; font-size: 11px; letter-spacing: 0.1em;">PREVIEW SYSTEM</span>
+            </div>
+            <div class="item" style="min-height: 200px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.01);">
+              <span style="opacity: 0.3; font-size: 11px; letter-spacing: 0.1em;">PREVIEW SYSTEM</span>
+            </div>
+          </div>
         </section>
 
-        <section id="process" style="padding: 26px 0;">
-          <h2 style="margin: 0 0 10px; font-size: 28px; letter-spacing: -0.03em;">Process</h2>
-          <p style="color: rgba(250, 250, 250, 0.6); margin: 0 0 14px;">Simple, fast, repeatable.</p>
+        <section id="contact">
+          <div class="section-label">Contact</div>
+          <h2>Let's build something <span class="grad">irresistible</span>.</h2>
+          <div class="item" style="max-width: 600px;">
+            <p style="margin-bottom: 24px;">Drop us a line and let's discuss your brand goals.</p>
+            <p><strong>Email:</strong> hello@dualframecreative.com</p>
+            <p><strong>Response time:</strong> Within 24–48 hours</p>
+          </div>
         </section>
 
-        <section id="contact" style="padding: 26px 0 60px;">
-          <h2 style="margin: 0 0 10px; font-size: 28px; letter-spacing: -0.03em;">Contact</h2>
-          <p style="color: rgba(250, 250, 250, 0.6); margin: 0 0 14px;">Email: hello@dualframecreative.com</p>
-        </section>
+        <footer class="footer">
+          <div>DualFrameCreative • Modern Advertising Studio</div>
+          <div>© 2026 DualFrameCreative. All rights reserved.</div>
+        </footer>
       </main>
     </div>
   </body>
 </html>
-
