@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DualFrameCreative</title>
+    <meta
+      name="description"
+      content="DualFrameCreative is a modern advertising studio crafting human-first, AI-assisted short-form content and campaigns that look premium and perform."
+    />
+
+    <meta property="og:title" content="DualFrameCreative" />
+    <meta
+      property="og:description"
+      content="Modern advertising. Liquid-glass design. Human-crafted, AI-powered short-form that performs."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://replit.com/public/images/opengraph.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@replit" />
+    <meta name="twitter:title" content="DualFrameCreative" />
+    <meta
+      name="twitter:description"
+      content="Modern advertising. Liquid-glass design. Human-crafted, AI-powered short-form that performs."
+    />
+    <meta name="twitter:image" content="https://replit.com/public/images/opengraph.png" />
+
+    <style>
+      :root {
+        --bg: #09090b;
+        --bg2: #0b0b10;
+        --text: #fafafa;
+        --muted: rgba(250, 250, 250, 0.6);
+        --muted2: rgba(250, 250, 250, 0.42);
+        --border: rgba(255, 255, 255, 0.08);
+        --glass: rgba(255, 255, 255, 0.06);
+        --glass2: rgba(255, 255, 255, 0.03);
+        --purple: #8b5cf6;
+        --green: #00ff88;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: radial-gradient(
+            circle at 15% 10%,
+            rgba(139, 92, 246, 0.18),
+            transparent 55%
+          ),
+          radial-gradient(
+            circle at 80% 80%,
+            rgba(0, 255, 136, 0.1),
+            transparent 55%
+          ),
+          linear-gradient(180deg, var(--bg), var(--bg2));
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial;
+        line-height: 1.6;
+      }
+
+      .wrap {
+        position: relative;
+        overflow: hidden;
+        min-height: 100svh;
+      }
+
+      .grid {
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.06) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.05) 1px,
+            transparent 1px
+          );
+        background-size: 56px 56px;
+        mask-image: radial-gradient(circle at 30% 15%, black 0%, transparent 60%);
+        opacity: 0.55;
+        pointer-events: none;
+      }
+
+      .noise::before {
+        content: "";
+        pointer-events: none;
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E");
+        mix-blend-mode: overlay;
+        opacity: 0.35;
+      }
+
+      .container {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 32px 20px;
+        position: relative;
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        background: rgba(9, 9, 11, 0.45);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 20px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .brand-dot {
+        width: 36px;
+        height: 36px;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .brand-dot::after {
+        content: "";
+        position: absolute;
+        inset: -40%;
+        background: radial-gradient(
+            circle at 30% 20%,
+            rgba(139, 92, 246, 0.45),
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 65% 80%,
+            rgba(0, 255, 136, 0.3),
+            transparent 50%
+          );
+        filter: blur(18px);
+      }
+
+      .links {
+        display: none;
+        gap: 22px;
+      }
+
+      @media (min-width: 860px) {
+        .links {
+          display: flex;
+        }
+      }
+
+      .links a {
+        color: rgba(250, 250, 250, 0.65);
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .links a:hover {
+        color: rgba(250, 250, 250, 0.95);
+      }
+
+      .btn {
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, var(--glass), var(--glass2));
+        color: var(--text);
+        padding: 10px 14px;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .hero {
+        padding: 56px 0 26px;
+        display: grid;
+        gap: 26px;
+        grid-template-columns: 1fr;
+      }
+
+      @media (min-width: 920px) {
+        .hero {
+          grid-template-columns: 1.1fr 0.9fr;
+          align-items: center;
+        }
+      }
+
+      .badge {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.04);
+        color: rgba(250, 250, 250, 0.72);
+        font-size: 12px;
+        font-weight: 600;
+        width: fit-content;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--green);
+        box-shadow: 0 0 18px rgba(0, 255, 136, 0.65);
+      }
+
+      h1 {
+        font-size: clamp(42px, 6vw, 72px);
+        line-height: 0.98;
+        letter-spacing: -0.05em;
+        margin: 18px 0 12px;
+      }
+
+      .grad {
+        background: linear-gradient(135deg, var(--purple), var(--green));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .sub {
+        color: var(--muted);
+        max-width: 52ch;
+        margin: 0;
+      }
+
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .cta a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .outline {
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .card {
+        position: relative;
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+        box-shadow: 0 18px 70px rgba(0, 0, 0, 0.45);
+        overflow: hidden;
+      }
+
+      .card .inner {
+        padding: 18px;
+      }
+
+      .logo {
+        width: 100%;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+      }
+
+      .logo img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .stats {
+        margin-top: 14px;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .stat {
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 12px;
+      }
+
+      .stat .v {
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .stat .l {
+        font-size: 12px;
+        color: rgba(250, 250, 250, 0.55);
+      }
+
+      .hint {
+        margin-top: 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        padding-top: 16px;
+        color: rgba(250, 250, 250, 0.45);
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap noise">
+      <div class="grid"></div>
+
+      <div class="nav">
+        <div class="nav-inner container">
+          <a class="brand" href="#top">
+            <span class="brand-dot"></span>
+            DualFrameCreative
+          </a>
+          <div class="links">
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+            <a href="#process">Process</a>
+            <a href="#contact">Contact</a>
+          </div>
+          <a class="btn" href="#contact">Book a call</a>
+        </div>
+      </div>
+
+      <main id="top" class="container">
+        <section class="hero">
+          <div>
+            <div class="badge"><span class="dot"></span> Human-crafted. AI-powered. Short-form that performs.</div>
+            <h1>
+              Premium ads, built like
+              <span class="grad"> liquid glass</span>.
+            </h1>
+            <p class="sub">
+              DualFrameCreative designs modern advertising systems: hooks, edits,
+              motion, and messaging—so your brand looks expensive and converts.
+            </p>
+            <div class="cta">
+              <a class="btn" href="#contact">Get a quote →</a>
+              <a class="btn outline" href="#work">See recent work</a>
+            </div>
+            <div class="hint">This is a single-file, dark-mode landing page (no build tools). Drop it into a GitHub repo and deploy on Vercel.</div>
+          </div>
+
+          <div class="card">
+            <div class="inner">
+              <div class="logo">
+                <img src="/dualframecreative-logo.png" alt="DualFrameCreative logo" />
+              </div>
+              <div class="stats">
+                <div class="stat"><div class="v">7–14 days</div><div class="l">Launch-ready creative sprints</div></div>
+                <div class="stat"><div class="v">3×</div><div class="l">Hooks tested per concept</div></div>
+                <div class="stat"><div class="v">Weekly</div><div class="l">Performance-led iterations</div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="services" style="padding: 26px 0;">
+          <h2 style="margin: 0 0 10px; font-size: 28px; letter-spacing: -0.03em;">Services</h2>
+          <p style="color: rgba(250, 250, 250, 0.6); margin: 0 0 14px;">A tight toolkit for modern advertising: strategy, creative, and speed.</p>
+        </section>
+
+        <section id="work" style="padding: 26px 0;">
+          <h2 style="margin: 0 0 10px; font-size: 28px; letter-spacing: -0.03em;">Work</h2>
+          <p style="color: rgba(250, 250, 250, 0.6); margin: 0 0 14px;">Swap placeholders with real client work later.</p>
+        </section>
+
+        <section id="process" style="padding: 26px 0;">
+          <h2 style="margin: 0 0 10px; font-size: 28px; letter-spacing: -0.03em;">Process</h2>
+          <p style="color: rgba(250, 250, 250, 0.6); margin: 0 0 14px;">Simple, fast, repeatable.</p>
+        </section>
+
+        <section id="contact" style="padding: 26px 0 60px;">
+          <h2 style="margin: 0 0 10px; font-size: 28px; letter-spacing: -0.03em;">Contact</h2>
+          <p style="color: rgba(250, 250, 250, 0.6); margin: 0 0 14px;">Email: hello@dualframecreative.com</p>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
